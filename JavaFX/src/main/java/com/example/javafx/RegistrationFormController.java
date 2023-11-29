@@ -3,9 +3,11 @@ package com.example.javafx;
 
 import com.fazecast.jSerialComm.SerialPort;
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,7 +47,7 @@ public class RegistrationFormController {
     private Label registrationMessageLabel;
 
     @FXML
-    public void registerButtonPressed(ActionEvent event) {
+    public void registerButtonPressed(ActionEvent event) throws IOException {
         if (validateFields()) {
             if (Objects.equals(passwordInput.getText(), retypePasswordInput.getText())) {
                 mySQLConnection connection = new mySQLConnection();
@@ -68,6 +70,14 @@ public class RegistrationFormController {
                 }
 
                 registrationMessageLabel.setText("Registration Successful.");
+
+
+                String rollNumber = rollNumberInput.getText();
+                String firstName = firstNameInput.getText();
+                String lastName = lastNameInput.getText();
+
+                go_to_home_page(event, rollNumber,firstName, lastName);
+
                 clearFields();
             } else {
                 registrationMessageLabel.setText("Passwords do not match.");
@@ -91,6 +101,17 @@ public class RegistrationFormController {
         lastNameInput.clear();
     }
 
+    private void go_to_home_page(Event event, String rollNumber, String firstName, String lastName) throws IOException {
+        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        loginStage.close();
 
+        Stage primaryStage = new Stage();
+        StudentHomePage studentHomePage = new StudentHomePage(rollNumber, firstName, lastName);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentHomePage.fxml"));
+        loader.setController(studentHomePage);
+        Parent root = loader.load();
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
 
 }

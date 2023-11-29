@@ -42,12 +42,12 @@ public class LoginController implements Initializable {
     private TextField passwordText;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         File brandingFile = new File("D:\\Semester 5\\SDA\\Project\\Images\\login_Side_pannel.png");
         Image leftPannel = new Image(brandingFile.toURI().toString());
         leftpanelimage.setImage(leftPannel);
     }
+
     @FXML
     private void rfidLoginButtonPressed(ActionEvent event) throws SQLException, IOException {
         String cardNumber;
