@@ -23,9 +23,10 @@ DROP TABLE IF EXISTS `rfid_validation_request`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rfid_validation_request` (
-  `requestID` int NOT NULL AUTO_INCREMENT,
   `rollNumber` varchar(45) NOT NULL,
-  PRIMARY KEY (`requestID`)
+  `rfid` varchar(45) DEFAULT NULL,
+  `reason` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`rollNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30  4:59:00
+-- Dump completed on 2023-12-03 22:50:36

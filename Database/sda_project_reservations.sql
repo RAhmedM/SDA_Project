@@ -23,17 +23,13 @@ DROP TABLE IF EXISTS `reservations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reservations` (
-  `smpID` int NOT NULL,
-  `stdID` int NOT NULL,
+  `smpID` int NOT NULL AUTO_INCREMENT,
+  `stdID` varchar(45) NOT NULL,
   `routeBusID` int DEFAULT NULL,
   `price` float DEFAULT NULL,
   `paymentCleared` int DEFAULT NULL,
-  PRIMARY KEY (`smpID`),
-  KEY `stdID` (`stdID`),
-  KEY `routeBusID` (`routeBusID`),
-  CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`stdID`) REFERENCES `student` (`idStudent`),
-  CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`routeBusID`) REFERENCES `routebus` (`routeBusID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`smpID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +38,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
+INSERT INTO `reservations` VALUES (3,'21I-0689',5,23,2);
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30  4:58:59
+-- Dump completed on 2023-12-03 22:50:36

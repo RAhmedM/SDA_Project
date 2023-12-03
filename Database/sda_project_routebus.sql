@@ -23,16 +23,12 @@ DROP TABLE IF EXISTS `routebus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `routebus` (
-  `routeBusID` int NOT NULL,
+  `routeBusID` int NOT NULL AUTO_INCREMENT,
   `routeID` int DEFAULT NULL,
   `busID` int DEFAULT NULL,
-  `departureTime` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`routeBusID`),
-  KEY `routeID` (`routeID`),
-  KEY `busID` (`busID`),
-  CONSTRAINT `routebus_ibfk_1` FOREIGN KEY (`routeID`) REFERENCES `route` (`routeID`),
-  CONSTRAINT `routebus_ibfk_2` FOREIGN KEY (`busID`) REFERENCES `bus` (`BusID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `departureTime` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`routeBusID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +37,7 @@ CREATE TABLE `routebus` (
 
 LOCK TABLES `routebus` WRITE;
 /*!40000 ALTER TABLE `routebus` DISABLE KEYS */;
+INSERT INTO `routebus` VALUES (4,14,1233,'5 45'),(5,13,1233,'2 30');
 /*!40000 ALTER TABLE `routebus` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30  4:58:59
+-- Dump completed on 2023-12-03 22:50:36

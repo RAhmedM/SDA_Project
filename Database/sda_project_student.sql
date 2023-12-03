@@ -42,7 +42,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'21I-0689','8686','Ahmed','Mustafa','25016221163',_binary '1'),(3,'21I-0510','abd86','Abdullah','Zafar','0',_binary '0'),(4,'21I-0683','umer123','Umer','Mehmood','0',_binary '0'),(5,'12I-0454','1234567','AWAIS','AWAIS','0',_binary '0'),(6,'21I-0682','8888','faisal','mustafa','0',_binary '0');
+INSERT INTO `student` VALUES (1,'21I-0689','8686','Ahmed','Mustafa','25016221163',_binary '1'),(3,'21I-0510','abd86','Abdullah','Zafar','4857139166',_binary '1'),(4,'21I-0683','umer123','Umer','Mehmood','0',_binary '0'),(5,'12I-0454','1234567','AWAIS','AWAIS','0',_binary '0'),(6,'21I-0682','8888','faisal','mustafa','0',_binary '0');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30  4:58:59
+-- Dump completed on 2023-12-03 22:50:37
