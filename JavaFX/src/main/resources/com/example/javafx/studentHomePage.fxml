@@ -17,7 +17,7 @@
         <Button fx:id="reserveSeat" layoutX="20.0" layoutY="228.0" mnemonicParsing="false" onAction="#SeatReservationButton" prefHeight="43.0" prefWidth="151.0" text="Reserve Bus Seat" />
         <Button layoutX="20.0" layoutY="292.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="151.0" text="Purchase Semester Pass" />
         <Button layoutX="20.0" layoutY="356.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="151.0" text="Cancel Reservation" />
-        <Button layoutX="20.0" layoutY="420.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="151.0" text="View Bus Schedule and Routes" />
+        <Button fx:id="displayRoutesButton" layoutX="20.0" layoutY="420.0" mnemonicParsing="false" onAction="#DisplayRoutesButton" prefHeight="43.0" prefWidth="151.0" text="View Bus Schedule and Routes" />
         <Button fx:id="rfid_Validation_Request_button" layoutX="20.0" layoutY="165.0" mnemonicParsing="false" onAction="#rfidValidationRequestButtonPressed" prefHeight="43.0" prefWidth="151.0" text="RFID Validation" />
     </children>
 </AnchorPane>

@@ -73,4 +73,17 @@ public class StudentHomePage implements Initializable {
         newStage.setScene(new Scene(root));
         newStage.show();
     }
+
+    public void DisplayRoutesButton(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DrouteMainpage.fxml"));
+        Parent root = loader.load();
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
+
+
 }

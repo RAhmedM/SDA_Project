@@ -4,6 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 public class main extends Application{
 
     private Stage primaryStage;
@@ -83,6 +86,19 @@ public class main extends Application{
         primaryStage.show();
     }
 
+
+    public static void show_DeleteRoutes(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(main.class.getResource("deleteRoute.fxml"));
+        primaryStage.setTitle("Delete Routes");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
+    public static void show_DRouteMain(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(main.class.getResource("DrouteMainpage.fxml"));
+        primaryStage.setTitle("Display Routes");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
 
     public static void main(String []args) {launch((args));}
 }

@@ -40,7 +40,7 @@ public class ManageRoutes {
 
         Stage primaryStage = new Stage();
         main Main = new main();
-        main.show_ManageRoutes(primaryStage);
+        main.show_DeleteRoutes(primaryStage);
     }
 
     private String[] getRouteData()

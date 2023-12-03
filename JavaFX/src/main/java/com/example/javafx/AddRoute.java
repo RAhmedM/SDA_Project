@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.*;
@@ -78,57 +79,11 @@ public class AddRoute implements Initializable {
         return data.stream().mapToInt(Integer::intValue).toArray();
     }
 
-
-    private void insertData() {
-        String url = "jdbc:mysql://localhost:3306/sda_project";
-        String username = "root";
-        String password = "8686";
-
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            // Disable auto-commit to treat both inserts as part of the same transaction
-            connection.setAutoCommit(false);
-
-            String insertRouteQuery = "INSERT INTO route (Departure, Destination) VALUES (?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(insertRouteQuery, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setString(1, startText.getText());
-                preparedStatement.setString(2, destinationText.getText());
-                preparedStatement.executeUpdate();
-
-                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        int routeID = generatedKeys.getInt(1);
-
-                        String insertRouteBusQuery = "INSERT INTO routebus (routeID, busID, departureTime) VALUES (?, ?, ?)";
-                        try (PreparedStatement routeBusStatement = connection.prepareStatement(insertRouteBusQuery)) {
-                            routeBusStatement.setInt(1, routeID);
-                            routeBusStatement.setInt(2, busSelected); // Replace with your actual busID
-                            routeBusStatement.setString(3, timeText.getText());
-                            routeBusStatement.executeUpdate();
-                        }
-                    } else {
-                        System.out.println("Failed to retrieve routeID.");
-                    }
-                }
-            }
-
-            // Commit the transaction
-            connection.commit();
-            connection.setAutoCommit(true);
-
-            System.out.println("Data inserted successfully.");
-
-        } catch (Exception e) {
-            // Rollback the transaction in case of an exception
-            e.printStackTrace();
-
-        }
-    }
-
     public void insertRoute()
     {
         mySQLConnection connection = new mySQLConnection();
 
-        try (Connection connectionDB = connection.getConnection()) {
+        try (Connection connectionDB = mySQLConnection.getConnection()) {
             String query = "INSERT INTO route (Departure, Destination) VALUES (?, ?)";
             try (PreparedStatement preparedStatement = connectionDB.prepareStatement(query)) {
                 preparedStatement.setString(1, startText.getText());
@@ -140,11 +95,51 @@ public class AddRoute implements Initializable {
         }
     }
 
+    public int getID() {
+        mySQLConnection connection = new mySQLConnection();
+
+        try (Connection connectionDB = connection.getConnection()) {
+            String query = "SELECT routeID FROM route WHERE Departure = ? AND Destination = ?";
+            try (PreparedStatement preparedStatement = connectionDB.prepareStatement(query)) {
+                preparedStatement.setString(1, startText.getText());
+                preparedStatement.setString(2, destinationText.getText());
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        System.out.println(resultSet.getInt("routeID"));
+                        return resultSet.getInt("routeID");
+                    } else {
+                        // Handle the case when no routeID is found
+                        return 0; // or throw an exception, or return a special value
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            // Handle the exception more appropriately, e.g., log it
+            e.printStackTrace();
+            return 0; // or throw an exception, or return a special value
+        }
+    }
 
 
+    public void setRouteBuS(Integer route_id) {
+        mySQLConnection connection = new mySQLConnection();
+
+        try (Connection connectionDB = mySQLConnection.getConnection()) {
+            String query = "INSERT INTO routebus (routeID, busID, departureTime) VALUES (?, ?, ?)";
+            try (PreparedStatement preparedStatement = connectionDB.prepareStatement(query)) {
+                preparedStatement.setInt(1, route_id);
+                preparedStatement.setInt(2, busSelected);
+                preparedStatement.setString(3, timeText.getText());
+
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
-
     public void addRouteButtonPressed(javafx.event.ActionEvent event) {
-        insertData();
+        insertRoute();
+        setRouteBuS(getID());
     }
 }

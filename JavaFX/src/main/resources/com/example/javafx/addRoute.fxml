@@ -18,6 +18,5 @@
       <Text layoutX="460.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time : " />
       <TextField fx:id="timeText" layoutX="539.0" layoutY="183.0" prefHeight="26.0" prefWidth="150.0" />
       <Text layoutX="146.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Bus : " />
-      <Label fx:id="message" alignment="CENTER" layoutX="195.0" layoutY="455.0" prefHeight="18.0" prefWidth="409.0" />
-   </children>
+     </children>
 </AnchorPane>
