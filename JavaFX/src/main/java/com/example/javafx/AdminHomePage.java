@@ -26,4 +26,26 @@ import java.util.Scanner;
 
 
 public class AdminHomePage {
+
+    @FXML
+    public void verifyRequestButtonPressed(ActionEvent event) throws Exception {
+        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        loginStage.close();
+
+        Stage primaryStage = new Stage();
+        main Main = new main();
+        main.show_rfidValidationAdmin(primaryStage);
+    }
+
+    @FXML
+    public void manageRoutesButtonPressed(ActionEvent event) throws Exception {
+        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        loginStage.close();
+
+        Stage primaryStage = new Stage();
+        main Main = new main();
+        main.show_ManageRoutes(primaryStage);
+    }
+
+
 }

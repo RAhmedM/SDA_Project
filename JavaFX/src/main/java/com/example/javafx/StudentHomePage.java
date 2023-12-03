@@ -28,6 +28,7 @@ public class StudentHomePage implements Initializable {
     @FXML
     private Label lastNameLabel;
 
+
     private String rollNumber;
     private String firstName;
     private String lastName;
@@ -36,6 +37,7 @@ public class StudentHomePage implements Initializable {
         this.rollNumber = rollNumber;
         this.firstName = firstName;
         this.lastName = lastName;
+        studentInformation.rollNumber = rollNumber;
     }
 
 
@@ -61,5 +63,14 @@ public class StudentHomePage implements Initializable {
         newStage.show();
     }
 
+    public void SeatReservationButton(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
 
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("seatResrvation.fxml"));
+        Parent root = loader.load();
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
 }

@@ -62,5 +62,27 @@ public class main extends Application{
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
+
+    public static void show_rfidValidationAdmin(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(main.class.getResource("adminRFID_Validation.fxml"));
+        primaryStage.setTitle("RFID Validation Page");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public static void show_ManageRoutes(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(main.class.getResource("manageRoutes.fxml"));
+        primaryStage.setTitle("Manage Routes");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
+
+    public static void show_AddRoutes(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(main.class.getResource("addRoute.fxml"));
+        primaryStage.setTitle("add Routes");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
+
+
     public static void main(String []args) {launch((args));}
 }

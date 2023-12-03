@@ -6,6 +6,7 @@ module com.example.javafx {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires com.fazecast.jSerialComm;
+    requires java.desktop;
 
     opens com.example.javafx to javafx.fxml;
     exports com.example.javafx;

@@ -5,11 +5,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx.AdminHomePage">
    <children>
       <ImageView fitHeight="400.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <Hyperlink fx:id="rfidApprovalButton" layoutX="37.0" layoutY="71.0" text="RFID Requests" textFill="#030202" />
+      <Hyperlink fx:id="rfidApprovalButton" layoutX="37.0" layoutY="72.0" onAction="#verifyRequestButtonPressed" text="RFID Requests" textFill="#030202" />
       <Label fx:id="pendinRequestsLabel" layoutX="132.0" layoutY="75.0" textFill="#ecef30" />
+      <Hyperlink fx:id="manageRouteLink" layoutX="37.0" layoutY="129.0" onAction="#manageRoutesButtonPressed" text="Manage Routes" textFill="#0d0d0d" />
    </children>
 </AnchorPane>

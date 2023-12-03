@@ -51,52 +51,31 @@ public class LoginController implements Initializable {
     @FXML
     private void rfidLoginButtonPressed(ActionEvent event) throws SQLException, IOException {
         String cardNumber;
-        SerialPort serialPort = SerialPort.getCommPort("COM3");
+        rfidCardReader reader = new rfidCardReader();
+        cardNumber = rfidCardReader.getRfid();
 
-        if (serialPort.openPort()) {
-            System.out.println("Serial port opened successfully.");
-
-            Scanner scanner = new Scanner(System.in);
-
-            while (true) {
-               if (serialPort.bytesAvailable() > 0) {
-                    byte[] readBuffer = new byte[serialPort.bytesAvailable()];
-                    int numRead = serialPort.readBytes(readBuffer, readBuffer.length);
-
-                    if (numRead > 0) {
-                        cardNumber = new String(readBuffer).trim();
-                        System.out.println(cardNumber);
-                        if(rfidValidation(cardNumber))
-                        {
-                            break;
-                        }
-                    }
-               }
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            String rfid = cardNumber;
-            String rollNumber = getUserNamewithRFID(rfid);
-            String firstName = getFirstName(rollNumber);
-            String lastName = getLastName(rollNumber);
-
-            Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            loginStage.close();
-
-            Stage primaryStage = new Stage();
-            StudentHomePage studentHomePage = new StudentHomePage(rollNumber, firstName, lastName);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentHomePage.fxml"));
-            loader.setController(studentHomePage);
-            Parent root = loader.load();
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } else {
-            System.out.println("Error opening serial port.");
+        while (!rfidValidation(cardNumber))
+        {
+            cardNumber = rfidCardReader.getRfid();
         }
+
+
+        String rfid = cardNumber;
+        String rollNumber = getUserNamewithRFID(rfid);
+        String firstName = getFirstName(rollNumber);
+        String lastName = getLastName(rollNumber);
+
+        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        loginStage.close();
+
+        Stage primaryStage = new Stage();
+        StudentHomePage studentHomePage = new StudentHomePage(rollNumber, firstName, lastName);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentHomePage.fxml"));
+        loader.setController(studentHomePage);
+        Parent root = loader.load();
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+
     }
 
     @FXML

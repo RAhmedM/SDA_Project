@@ -101,6 +101,16 @@ public class RegistrationFormController {
         lastNameInput.clear();
     }
 
+    @FXML
+    public void backTOLogin(ActionEvent event) throws Exception {
+        Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        homeStage.close();
+
+        Stage primaryStage = new Stage();
+        main Main = new main();
+        Main.showLoginForm(primaryStage);
+    }
+
     private void go_to_home_page(Event event, String rollNumber, String firstName, String lastName) throws IOException {
         Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         loginStage.close();
