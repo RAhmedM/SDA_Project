@@ -15,19 +15,19 @@ import javafx.scene.control.TextArea;
 public class SeatConfirmation {
     @FXML
     public TextArea displaytext;
-    String inputData2 = "0098866";
+    String rollNumber = studentInformation.rollNumber;
 
     public SeatConfirmation() {
     }
 
-    public void seat(String inputData) {
+    public void seat(String routeBusID_PPas) {
         String url = "jdbc:mysql://127.0.0.1:3306/sda_project";
         String username = "root";
         String password = "8686";
-        String inputData2 = "0098866";
-        this.displaytext.setText("Thank You " + inputData2 + " For Using Our App your seat in busid " + inputData + " has been confirmed");
+        this.displaytext.setText("Thank You " + rollNumber + " For Using Our App your seat in busid " + routeBusID_PPas + " has been confirmed");
         String sqlQuery1 = "UPDATE bus SET total_Seats = total_Seats - 1 WHERE BusID = ?";
-        String sqlQuery2 = "UPDATE reservations INNER JOIN wallet ON reservations.stdID = wallet.std_ID SET reservations.routeBusID = ?, reservations.price = 10, reservations.paymentcleared = 1, wallet.balance = wallet.balance - 10 WHERE reservations.stdID = ? AND wallet.std_ID = ?";
+        String sqlQuery2 = "INSERT INTO reservations (stdID, routeBusID, price, paymentCleared)\n" +
+                "VALUES (?, ?, ?, ?);\n";
 
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
@@ -40,11 +40,12 @@ public class SeatConfirmation {
 
                     try {
                         connection.setAutoCommit(false);
-                        statement1.setString(1, inputData);
+                        statement1.setString(1, routeBusID_PPas);
                         statement1.executeUpdate();
-                        statement2.setString(1, inputData);
-                        statement2.setString(2, inputData2);
-                        statement2.setString(3, inputData2);
+                        statement2.setString(1, rollNumber);
+                        statement2.setString(2, routeBusID_PPas);
+                        statement2.setInt(3, 10);
+                        statement2.setInt(4, 1);
                         statement2.executeUpdate();
                         connection.commit();
                     } catch (Throwable var16) {

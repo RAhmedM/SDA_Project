@@ -22,7 +22,7 @@
         </TilePane>
         <TableView fx:id="table1122" layoutX="89.0" layoutY="67.0" prefHeight="176.0" prefWidth="410.0">
             <columns>
-                <TableColumn fx:id="busIdColumn" text="Bus ID" />
+                <TableColumn fx:id="busIdColumn" text="Route ID" />
                 <TableColumn fx:id="Dtime" text="Departure Time" />
                 <TableColumn fx:id="Dep" text="Departure" />
                 <TableColumn fx:id="Dest" text="Destination" />

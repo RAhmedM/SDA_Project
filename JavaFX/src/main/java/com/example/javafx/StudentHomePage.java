@@ -85,5 +85,28 @@ public class StudentHomePage implements Initializable {
         newStage.show();
     }
 
+    public void CancelReservation(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
+        Stage newStage = new Stage();
+        newStage.setTitle("Cancel Seat Reservation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cancelReservation.fxml"));
+        Parent root = loader.load();
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
+    @FXML
+    public void buySemesterPass(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
+        Stage newStage = new Stage();
+        newStage.setTitle("Buy Semester Pass");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Sempass.fxml"));
+        Parent root = loader.load();
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
 
 }

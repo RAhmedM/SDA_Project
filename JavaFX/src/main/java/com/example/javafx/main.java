@@ -100,5 +100,12 @@ public class main extends Application{
         primaryStage.show();
     }
 
+    public static void show_CancelReservation(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(main.class.getResource("cancelReservation.fxml"));
+        primaryStage.setTitle("Cancel Reservation");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
+
     public static void main(String []args) {launch((args));}
 }

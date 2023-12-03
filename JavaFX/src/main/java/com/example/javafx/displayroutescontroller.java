@@ -73,7 +73,7 @@ public class displayroutescontroller {
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
             try {
-                String query = "SELECT rb.BusID, rb.departureTime, r.Departure, r.Destination, b.total_Seats FROM route r INNER JOIN routebus rb ON r.routeID = rb.routeID INNER JOIN bus b ON rb.BusID = b.BusID WHERE r.Departure = ? AND r.Destination = ?";
+                String query = "SELECT rb.routeBusID, rb.departureTime, r.Departure, r.Destination, b.total_Seats FROM route r INNER JOIN routebus rb ON r.routeID = rb.routeID INNER JOIN bus b ON rb.BusID = b.BusID WHERE r.Departure = ? AND r.Destination = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, inputData1);
                 statement.setString(2, inputData2);
@@ -86,7 +86,7 @@ public class displayroutescontroller {
                         break;
                     }
 
-                    int busID = resultSet.getInt("BusID");
+                    int busID = resultSet.getInt("routeBusID");
                     String busIDString = String.valueOf(busID);
                     String departureTime = resultSet.getString("departureTime");
                     String departure = resultSet.getString("Departure");
